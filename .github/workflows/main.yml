@@ -1,4 +1,4 @@
-name: Main Workflow
+name: CI Workflow
 
 on:
   push:
@@ -26,10 +26,13 @@ jobs:
           node-version: 14
 
       - name: Install dependencies
-        run: npm install\n        working-directory: ./path_to_project
+        run: |
+          npm install
+          working-directory: ./path_to_project
         working-directory: ./path_to_project
         - name: Reference environment variable secrets
-          run: npm run deploy\n        working-directory: ./path_to_project|
+          run: |
+          npm run deploy\n        working-directory: ./path_to_project|
             echo "MY_ENV_VAR is $MY_ENV_VAR"
             echo "ANOTHER_ENV_VAR is $ANOTHER_ENV_VAR "      
       - name: Run tests
