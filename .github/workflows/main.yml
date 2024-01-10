@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set up environment variables
+        env:
+          MY_ENV_VAR: ${{ secrets.MY_ENV_VAR }}
+          ANOTHER_ENV_VAR: ${{ secrets.ANOTHER_ENV_VAR }}
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -24,7 +28,10 @@ jobs:
       - name: Install dependencies
         run: 
         working-directory: ./path_to_project
-      
+        - name: Reference environment variable secrets
+          run: |
+            echo "MY_ENV_VAR is $MY_ENV_VAR"
+            echo "ANOTHER_ENV_VAR is $ANOTHER_ENV_VAR "      
       - name: Run tests
         run: 
         working-directory: ./path_to_project
